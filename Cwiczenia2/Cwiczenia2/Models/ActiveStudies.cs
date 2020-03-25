@@ -7,15 +7,14 @@ using System.Xml.Serialization;
 namespace Cwiczenia2.Models
 {
     [Serializable]
-    public class Studies
+    public class ActiveStudies
     {
-        [XmlElement(elementName:"name")]
+        [XmlElement(elementName: "name")]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [XmlElement(elementName:"mode")]
-        [JsonPropertyName("mode")]
-        public string Mode { get; set; }
-
+        [XmlElement(elementName: "numberOfStudents")]
+        [JsonPropertyName("numberOfStudents")]
+        public int NumberOfStudents { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using System.Xml.Serialization;
 
 namespace Cwiczenia2
@@ -12,13 +13,14 @@ namespace Cwiczenia2
         {
             string path = @"Data\dane.csv";
 
-            var list = new List<Student>();
-            var activeStudies = new List<Studies>();
+            var students = new List<Student>();
+            var activeStudies = new SortedList<string,int>();
+            var serializeList = new List<ActiveStudies>();
 
             FileStream writer = new FileStream(@"result.xml", FileMode.Create);
             XmlSerializer studentSerializer = new XmlSerializer(typeof(List<Student>),
                                        new XmlRootAttribute("uczelnia"));
-            XmlSerializer studiesSerializer = new XmlSerializer(typeof(List<Studies>));
+            XmlSerializer studiesSerializer = new XmlSerializer(typeof(List<ActiveStudies>));
 
             var fileInfo = new FileInfo(path);
             using(var stream = new StreamReader(fileInfo.OpenRead()))
@@ -46,7 +48,7 @@ namespace Cwiczenia2
                             Studies = new Studies
                             {
                                 Name = kolumny[2],
-                                Mode = kolumny[3]
+                                Mode = kolumny[3],
                             },
                             StudentNumber = "s"+kolumny[4],
                             BirthDate = kolumny[5],
@@ -54,13 +56,34 @@ namespace Cwiczenia2
                             MotherName = kolumny[7],
                             FatherName = kolumny[8]
                         };
-                        list.Add(student);
+                        if (!activeStudies.ContainsKey(student.Studies.Mode)){
+                            activeStudies.Add(student.Studies.Mode, 1);
+                        }
+                        else
+                        {
+                            activeStudies[student.Studies.Mode] += 1;
+                        }
+                        students.Add(student);
                     }
                 }
             }
-           
-            studentSerializer.Serialize(writer, list);
-            studiesSerializer.Serialize(writer, activeStudies);
+            foreach(String s in activeStudies.Keys)
+            {
+                serializeList.Add(new ActiveStudies
+                {
+                    Name = s,
+                    NumberOfStudents = activeStudies[s]
+                });
+            }
+            
+
+            var jsonSerializer = JsonSerializer.Serialize(students);
+            var jsonActiveStudies = JsonSerializer.Serialize(serializeList);
+            jsonSerializer = jsonSerializer + jsonActiveStudies;
+            File.WriteAllText("result.json", jsonSerializer);
+            
+            studentSerializer.Serialize(writer, students);
+            studiesSerializer.Serialize(writer, serializeList);
 
             writer.Close();
             writer.Dispose();
