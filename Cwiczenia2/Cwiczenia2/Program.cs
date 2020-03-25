@@ -13,11 +13,12 @@ namespace Cwiczenia2
             string path = @"Data\dane.csv";
 
             var list = new List<Student>();
-            var activeStudies = new Dictionary<string, int>();
+            var activeStudies = new List<Studies>();
 
             FileStream writer = new FileStream(@"result.xml", FileMode.Create);
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Student>),
+            XmlSerializer studentSerializer = new XmlSerializer(typeof(List<Student>),
                                        new XmlRootAttribute("uczelnia"));
+            XmlSerializer studiesSerializer = new XmlSerializer(typeof(List<Studies>));
 
             var fileInfo = new FileInfo(path);
             using(var stream = new StreamReader(fileInfo.OpenRead()))
@@ -57,8 +58,12 @@ namespace Cwiczenia2
                     }
                 }
             }
+           
+            studentSerializer.Serialize(writer, list);
+            studiesSerializer.Serialize(writer, activeStudies);
 
-            serializer.Serialize(writer, list);
+            writer.Close();
+            writer.Dispose();
 
         }
     }

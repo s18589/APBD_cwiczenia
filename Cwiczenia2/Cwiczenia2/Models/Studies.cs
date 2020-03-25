@@ -13,5 +13,8 @@ namespace Cwiczenia2.Models
 
         [XmlElement(elementName:"mode")]
         public string Mode { get; set; }
+
+        [XmlElement(elementName:"numberOfStudents")]
+        public int numberOfStudents { get; set; }
     }
 }
