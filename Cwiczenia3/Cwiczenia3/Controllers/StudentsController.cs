@@ -3,6 +3,7 @@ using Cwiczenia3.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,7 +42,6 @@ namespace Cwiczenia3.Controllers
         [HttpPost]
         public IActionResult CreateStudent(Student student)
         {
-            student.IndexNumber = $"s{new Random().Next(1, 20000)}";
             return Ok(student);
         }
 
