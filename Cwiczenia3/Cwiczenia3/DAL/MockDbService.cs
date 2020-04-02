@@ -27,7 +27,7 @@ namespace Cwiczenia3.DAL
                     var Student = new Student();
                     Student.FirstName = reader["firstname"].ToString();
                     Student.LastName = reader["lastname"].ToString();
-                    Student.BirthDate = reader["birthdate"].ToString();
+                    Student.BirthDate = (DateTime) reader["birthdate"];
                     Student.Semester = reader["semester"].ToString();
                     Student.StudiesName = reader["name"].ToString();
                     _students.Add(Student);
