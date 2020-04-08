@@ -8,15 +8,11 @@ namespace Cwiczenia3.DTO.Requests
 {
     public class EnrollStudentRequest
     {
-        [Required]
-        public string IndexNumber { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-        [Required]
-        public string Studies { get; set; }
-        [Required]
-        public DateTime BirthDate { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string IndexNumber { get; set; }
+            public string Studies { get; set; }
+            public DateTime BirthDate { get; set; }
+        
     }
 }

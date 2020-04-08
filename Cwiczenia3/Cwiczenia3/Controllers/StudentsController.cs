@@ -1,5 +1,6 @@
 ﻿using Cwiczenia3.DAL;
 using Cwiczenia3.Models;
+using Cwiczenia3.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace Cwiczenia3.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        private readonly IDbService _dbService;
+        private readonly IStudentDbService _dbService;
         
-        public StudentsController(IDbService dbService)
+        public StudentsController(IStudentDbService dbService)
         {
             _dbService = dbService;
         }
@@ -23,7 +24,7 @@ namespace Cwiczenia3.Controllers
         [HttpGet]
         public IActionResult GetStudents(string orderBy)
         {
-            return Ok(_dbService.GetStudents());
+            return Ok();
         }
 
         [HttpGet("{id}")]

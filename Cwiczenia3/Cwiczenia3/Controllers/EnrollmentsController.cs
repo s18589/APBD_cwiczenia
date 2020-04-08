@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cwiczenia3.Controllers
 {
-    [Route("api/controller")]
+    [Route("api/enrollment")]
     [ApiController]
     public class EnrollmentsController : ControllerBase
     {
@@ -25,13 +25,13 @@ namespace Cwiczenia3.Controllers
         [HttpPost]
         public IActionResult EnrollStudent(EnrollStudentRequest student)
         {
-            _service.EnrollStudent(student);
-            var response = new EnrollStudentResponse();
-            response.LastName = student.LastName;
-            response.IndexNumber = student.IndexNumber;
-            response.StartDate = new DateTime(2020, 08, 01);
-
-            return Ok(response);
+            Console.WriteLine(student);
+            var response = _service.EnrollStudent(student);
+            if(response != null)
+            {
+                return Ok(response);
+            }
+            return BadRequest();
         }
     }
 }

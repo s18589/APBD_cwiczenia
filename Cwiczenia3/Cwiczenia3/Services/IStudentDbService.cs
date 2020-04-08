@@ -1,4 +1,6 @@
 ﻿using Cwiczenia3.DTO.Requests;
+using Cwiczenia3.DTO.Responses;
+using Cwiczenia3.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,6 @@ namespace Cwiczenia3.Services
 {
     public interface IStudentDbService
     {
-        bool EnrollStudent(EnrollStudentRequest student);
+        EnrollStudentResponse EnrollStudent(EnrollStudentRequest student);
     }
 }
