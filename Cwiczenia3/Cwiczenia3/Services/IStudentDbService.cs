@@ -12,5 +12,6 @@ namespace Cwiczenia3.Services
     public interface IStudentDbService
     {
         EnrollStudentResponse EnrollStudent(EnrollStudentRequest student);
+        PromoteStudentResponse PromoteStudent(PromoteStudentRequest promotion);
     }
 }
