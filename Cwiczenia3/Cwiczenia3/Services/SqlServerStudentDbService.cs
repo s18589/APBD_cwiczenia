@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Cwiczenia3.DTO.Responses;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Cwiczenia3.Services
 {
@@ -149,6 +150,20 @@ namespace Cwiczenia3.Services
                 transaction.Commit();
 
                 return response;
+            }
+        }
+        public bool CheckCredential(string login, string password)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=s18589;Integrated Security=true"))
+            using(var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+
+                command.Parameters.AddWithValue("login", login);
+                command.Parameters.AddWithValue("password", password);
+                command.CommandText = "select 1 from student where indexnumber = @login and password = @password";
+                return command.ExecuteReader().Read();
             }
         }
     }

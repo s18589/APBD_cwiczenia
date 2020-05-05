@@ -6,6 +6,7 @@ using Cwiczenia3.DAL;
 using Cwiczenia3.DTO.Requests;
 using Cwiczenia3.DTO.Responses;
 using Cwiczenia3.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,7 @@ namespace Cwiczenia3.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "employee")]
         public IActionResult EnrollStudent(EnrollStudentRequest student)
         {
             var response = _service.EnrollStudent(student);

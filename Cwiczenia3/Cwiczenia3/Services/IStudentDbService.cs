@@ -13,5 +13,6 @@ namespace Cwiczenia3.Services
     {
         EnrollStudentResponse EnrollStudent(EnrollStudentRequest student);
         PromoteStudentResponse PromoteStudent(PromoteStudentRequest promotion);
+        Boolean CheckCredential(string login, string password);
     }
 }

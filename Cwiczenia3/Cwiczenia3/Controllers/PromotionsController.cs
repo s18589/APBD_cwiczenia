@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cwiczenia3.DTO.Requests;
 using Cwiczenia3.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,7 @@ namespace Cwiczenia3.Controllers
             _service = service;
         }
         [HttpPost]
+        [Authorize(Roles ="employee")]
         public IActionResult PromoteStudent(PromoteStudentRequest promotion)
         {
             var response = _service.PromoteStudent(promotion);
