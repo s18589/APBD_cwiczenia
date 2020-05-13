@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cwiczenia3.DAL;
 using Cwiczenia3.Middlewares;
+using Cwiczenia3.ModelsEF;
 using Cwiczenia3.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,7 +48,11 @@ namespace Cwiczenia3
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["secret"]))
                 };
             });
-            services.AddSingleton<IStudentDbService, SqlServerStudentDbService>();
+            services.AddScoped<IStudentDbService, EfStudentsDbService>();
+            services.AddDbContext<s18589Context>(options =>
+            {
+                options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s18589;Integrated Security=True");
+            });
             services.AddControllers();
         }
 

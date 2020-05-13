@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cwiczenia3", "Cwiczenia3\Cwiczenia3.csproj", "{4B337593-3DCC-427E-8451-239041C5190C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cwiczenia2", "..\Cwiczenia2\Cwiczenia2\Cwiczenia2.csproj", "{FACA4E84-BAA8-4C18-AAE0-04C2F829C82B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cwiczenia2", "..\Cwiczenia2\Cwiczenia2\Cwiczenia2.csproj", "{FACA4E84-BAA8-4C18-AAE0-04C2F829C82B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqConsoleApp", "E:\Folder Mateusza\pjatk\APBD\LinqConsoleApp\LinqConsoleApp\LinqConsoleApp.csproj", "{E44E911C-5E55-4DBA-B62A-58C36B1E0945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FACA4E84-BAA8-4C18-AAE0-04C2F829C82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FACA4E84-BAA8-4C18-AAE0-04C2F829C82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FACA4E84-BAA8-4C18-AAE0-04C2F829C82B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E44E911C-5E55-4DBA-B62A-58C36B1E0945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E44E911C-5E55-4DBA-B62A-58C36B1E0945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E44E911C-5E55-4DBA-B62A-58C36B1E0945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E44E911C-5E55-4DBA-B62A-58C36B1E0945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
