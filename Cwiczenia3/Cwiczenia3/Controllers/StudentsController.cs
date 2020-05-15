@@ -1,6 +1,6 @@
 ﻿using Cwiczenia3.DAL;
 using Cwiczenia3.DTO.Requests;
-using Cwiczenia3.Models;
+using Cwiczenia3.ModelsEF;
 using Cwiczenia3.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -20,19 +20,24 @@ namespace Cwiczenia3.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        private readonly IStudentDbService _dbService;
+        private readonly IEfStudentDbService _dbService;
         public IConfiguration Configuration { get; set; }
 
-        public StudentsController(IStudentDbService dbService, IConfiguration configuration)
+        public StudentsController(IEfStudentDbService dbService, IConfiguration configuration)
         {
             _dbService = dbService;
             Configuration = configuration;
         }
 
         [HttpGet]
-        public IActionResult GetStudents(string orderBy)
+        public IActionResult GetStudents()
         {
-            return Ok();
+            var res = _dbService.GetStudents();
+            if(res == null)
+            {
+                return BadRequest("nie ma studentow");
+            }
+            return Ok(res);
         }
 
         [HttpGet("{id}")]
@@ -78,21 +83,32 @@ namespace Cwiczenia3.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStudent(Student student)
+        public IActionResult InsertStudent(Student student)
         {
+            var res = _dbService.InsertStudent(student);
             return Ok(student);
         }
 
         [HttpDelete]
-        public IActionResult DeleteStudent(string StudentId)
+        public IActionResult DeleteStudent(Student student)
         {
-            return Ok("Usuwanie ukończone");
+            var res = _dbService.DeleteStudent(student);
+            if(res == null)
+            {
+                return BadRequest("usuwanie nie powiodlo sie");
+            }
+            return Ok(student);
         }
 
         [HttpPut]
-        public IActionResult PutStudent(string StudentId)
+        public IActionResult UpdateStudent(Student student)
         {
-            return Ok("Wstawianie ukonczone");
+            var res = _dbService.UpdateStudent(student);
+            if(res == null)
+            {
+                return BadRequest("aktualizacja studenta nie powiodla sie");
+            }
+            return Ok(student);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace Cwiczenia3
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["secret"]))
                 };
             });
-            services.AddScoped<IStudentDbService, EfStudentsDbService>();
+            services.AddScoped<IEfStudentDbService, EfStudentsDbService>();
             services.AddDbContext<s18589Context>(options =>
             {
                 options.UseSqlServer("Data Source=db-mssql;Initial Catalog=s18589;Integrated Security=True");
